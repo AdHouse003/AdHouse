@@ -1,17 +1,37 @@
 import React from 'react';
-import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from '../firebase';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider, db } from '../firebase';
 import { useNavigate } from 'react-router-dom';
+import { doc, setDoc } from 'firebase/firestore';
 
 const Auth = () => {
   const navigate = useNavigate();
 
   const handleGoogleSignIn = async () => {
     try {
+      // Sign in with Google
       const result = await signInWithPopup(auth, googleProvider);
-      if (result.user) navigate('/home');
+
+      if (result.user) {
+        const user = result.user;
+
+        // Add or update user in Firestore
+        const userRef = doc(db, 'users', user.uid);
+        await setDoc(
+          userRef,
+          {
+            email: user.email,
+            displayName: user.displayName,
+            photoURL: user.photoURL,
+          },
+          { merge: true } // Merge to avoid overwriting existing data
+        );
+
+        // Navigate to the home page after successful sign-in
+        navigate('/home');
+      }
     } catch (error) {
-      console.error("Error during Google sign-in:", error);
+      console.error('Error during Google sign-in:', error);
     }
   };
 

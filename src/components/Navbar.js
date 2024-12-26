@@ -7,6 +7,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import { doc, getDoc } from 'firebase/firestore';
 import { FaUser } from 'react-icons/fa';
+import { toast } from 'react-hot-toast';
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
@@ -15,6 +16,7 @@ const Navbar = () => {
   const dropdownRef = useRef(null);
   const [userProfile, setUserProfile] = useState(null);
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -60,6 +62,24 @@ const Navbar = () => {
     } catch (error) {
       console.error("Error logging out:", error);
     }
+  };
+
+  const handleListAd = () => {
+    if (!user) {
+      toast.error('Please sign in to list an ad');
+      navigate('/login');
+      return;
+    }
+    navigate('/list-ad');
+  };
+
+  const handleProfile = () => {
+    if (!user) {
+      toast.error('Please sign in to view profile');
+      navigate('/login');
+      return;
+    }
+    navigate(`/user/${user.uid}`);
   };
 
   return (

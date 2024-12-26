@@ -6,6 +6,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { toast } from 'react-hot-toast';
 import { FaUser, FaCamera } from 'react-icons/fa';
 import { updateProfile } from 'firebase/auth';
+import { getRandomDefaultAvatar } from '../utils/avatars';
+import { deleteUserAccount } from '../utils/deleteAccount';
 
 const Profile = () => {
   const [user] = useAuthState(auth);
@@ -101,6 +103,9 @@ const Profile = () => {
           error: 'Failed to upload photo'
         });
         photoURL = await uploadPromise;
+      } else if (!photoURL) {
+        // If no photo was uploaded and no existing photo, use a default avatar
+        photoURL = getRandomDefaultAvatar();
       }
 
       // Update user document in Firestore
@@ -112,7 +117,7 @@ const Profile = () => {
         updatedAt: new Date()
       });
 
-      // Update the auth profile using the correct method
+      // Update the auth profile
       if (auth.currentUser) {
         await updateProfile(auth.currentUser, {
           displayName: profile.displayName,
@@ -136,6 +141,19 @@ const Profile = () => {
       ...prev,
       [name]: value
     }));
+  };
+
+  const handleDeleteAccount = async () => {
+    const confirmDelete = window.confirm('Are you sure you want to delete your account? This action cannot be undone.');
+    if (confirmDelete) {
+      try {
+        await deleteUserAccount();
+        toast.success('Account deleted successfully.');
+        navigate('/');
+      } catch (error) {
+        toast.error(error.message || 'Failed to delete account.');
+      }
+    }
   };
 
   if (!user) {
@@ -230,6 +248,12 @@ const Profile = () => {
           </button>
         </form>
       </div>
+      <button
+        onClick={handleDeleteAccount}
+        className="mt-4 w-full bg-red-600 text-white py-2 rounded-lg hover:bg-red-700 transition-colors"
+      >
+        Delete Account
+      </button>
     </div>
   );
 };

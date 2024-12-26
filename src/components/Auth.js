@@ -43,17 +43,16 @@ const Auth = () => {
       
       if (!hasProfile) {
         await createInitialUserProfile(user);
-        // Redirect to profile page with a message about completing profile
         toast.success('Please complete your profile to continue');
         navigate('/profile', { replace: true });
       } else {
-        // For existing users, redirect to intended destination or home
         const destination = location.state?.from || '/';
         navigate(destination, { replace: true });
       }
     } catch (error) {
       console.error('Profile check error:', error);
-      toast.error('Error checking profile status');
+      toast.error(error.message || 'Error checking profile status');
+      navigate('/profile', { replace: true });
     }
   };
 

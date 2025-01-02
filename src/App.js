@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import AdDetails from './components/AdDetails';
 import Profile from './components/Profile';
 import MyAds from './components/MyAds';
+import EditAd from './components/EditAd';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/ad/:id" element={<AdDetails />} />
+        <Route path="/edit-ad/:id" element={<EditAd />} /> {/* Route for editing ads */}
+
         <Route 
           path="/my-ads" 
           element={
@@ -51,6 +54,13 @@ function App() {
             </ProtectedRoute>
           } 
         />
+        <Route 
+          path="/edit-ad/:id" 
+            element={
+            <ProtectedRoute>
+              <EditAd />
+            </ProtectedRoute>
+            } />
       </Routes>
     </Router>
   );

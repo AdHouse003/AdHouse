@@ -60,17 +60,17 @@ const Auth = () => {
     try {
       const result = await signInWithPopup(auth, googleProvider);
       const isNewUser = result._tokenResponse.isNewUser;
-      
+
       if (isNewUser) {
         toast.success('Account created successfully with Google!');
       } else {
         toast.success('Successfully logged in with Google!');
       }
-      
+
       await handlePostAuth(result.user, isNewUser);
     } catch (error) {
       console.error('Google auth error:', error);
-      toast.error('Failed to login with Google');
+      toast.error('Failed to login with Google: ' + error.message);
     }
   };
 

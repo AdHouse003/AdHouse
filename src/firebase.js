@@ -22,6 +22,7 @@ export const db = getFirestore(app);
 export const googleProvider = new GoogleAuthProvider();
 export const storage = getStorage(app); // Add storage export
 
+
 // Enable offline persistence
 enableIndexedDbPersistence(db)
   .catch((err) => {

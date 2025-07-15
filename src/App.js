@@ -31,7 +31,7 @@ import MyOrganizations from './components/MyOrganizations';
 import UserProfile from './components/UserProfile';
 
 import './App.css'; // Main CSS for the app
-
+ 
 function App() {
   // The Router wraps the entire app, enabling navigation between pages
   return (

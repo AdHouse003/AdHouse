@@ -19,7 +19,7 @@ import { db, auth } from '../firebase';
 import { toast } from 'react-hot-toast';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
-const EditAd = () => {
+const EditAd = () => { 
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, loading] = useAuthState(auth);

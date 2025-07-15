@@ -1,3 +1,15 @@
+/*
+  src/components/Register.js
+  --------------------------
+  This component displays the registration form for new users.
+  - Handles user input for email, password, and name
+  - Registers the user with Firebase
+  - Shows error messages if registration fails
+  - Redirects to the home page or login page on success
+  
+  This is used in App.js for the /register route.
+*/
+
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';

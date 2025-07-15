@@ -1,3 +1,17 @@
+/*
+  src/components/EditOrganization.js
+  ----------------------------------
+  This component allows users to edit an existing organization they own.
+  - Fetches organization data from Firestore based on the organization ID in the URL
+  - Displays a form pre-filled with the organization's current details
+  - Allows the user to update organization information
+  - Handles form submission, validation, and loading state
+  - Integrates with Firestore to update the organization document
+  - Shows loading and error messages as needed
+  
+  This is used in App.js for the /edit-organization/:id route and is protected (only accessible when logged in and authorized).
+*/
+
 // import React, { useState, useEffect } from 'react';
 // import { useParams, useNavigate } from 'react-router-dom';
 // import { doc, getDoc, updateDoc } from 'firebase/firestore';

@@ -1,3 +1,13 @@
+/*
+  src/components/Navbar.js
+  ------------------------
+  This component renders the navigation bar at the top of the app.
+  - Shows links to main routes (Home, My Ads, Organizations, etc.)
+  - Displays login/register or user menu based on auth state
+  - Handles navigation and logout
+  - Used on all pages for consistent navigation
+*/
+
 import React, { useState, useEffect, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faSignInAlt, faUserCircle, faMessage, faCaretDown, faBars } from '@fortawesome/free-solid-svg-icons';

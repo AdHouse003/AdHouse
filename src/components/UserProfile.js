@@ -1,3 +1,15 @@
+/*
+  src/components/UserProfile.js
+  -----------------------------
+  This component displays the profile of the currently logged-in user.
+  - Fetches user data from Firestore
+  - Shows user info, ads, and organizations
+  - Allows the user to edit their profile or delete their account
+  - Handles loading and error states
+  
+  This is used in App.js for the /profile route and is protected (only accessible when logged in).
+*/
+
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { collection, query, where, getDocs, doc, getDoc } from 'firebase/firestore';
@@ -78,14 +90,14 @@ const UserProfile = () => {
             <Link 
               key={ad.id} 
               to={`/ad/${ad.id}`}
-              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow"
+              className={`bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow ${ad.sold ? 'opacity-75' : ''}`}
             >
               <div className="relative aspect-[4/3]">
                 {ad.images && ad.images.length > 0 ? (
                   <img
                     src={ad.images[0]}
                     alt={ad.name}
-                    className="w-full h-full object-cover"
+                    className={`w-full h-full object-cover ${ad.sold ? 'grayscale' : ''}`}
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-200 flex items-center justify-center">
@@ -95,6 +107,13 @@ const UserProfile = () => {
                 <div className="absolute top-2 right-2 bg-blue-500 text-white px-2 py-1 rounded-full text-sm">
                   GHC {ad.price?.toLocaleString()}
                 </div>
+                {ad.sold && (
+                  <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+                    <div className="bg-red-500 text-white px-4 py-2 rounded-lg text-lg font-bold transform -rotate-12">
+                      SOLD
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="p-4">
                 <h3 className="text-lg font-semibold mb-2">{ad.name}</h3>

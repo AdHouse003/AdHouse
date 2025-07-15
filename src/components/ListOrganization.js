@@ -1,3 +1,14 @@
+/*
+  src/components/ListOrganization.js
+  ----------------------------------
+  This component allows users to create and list a new organization.
+  - Displays a form for entering organization details
+  - Integrates with Firestore to save the new organization
+  - Handles form validation, loading state, and error messages
+  
+  This is used in App.js for the /list-organization route and is protected (only accessible when logged in).
+*/
+
 // import React, { useState } from 'react';
 // import { useNavigate } from 'react-router-dom';
 // import { collection, addDoc, serverTimestamp } from 'firebase/firestore';

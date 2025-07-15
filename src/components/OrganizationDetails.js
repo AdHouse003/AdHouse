@@ -1,3 +1,15 @@
+/*
+  src/components/OrganizationDetails.js
+  -------------------------------------
+  This component displays the details of a single organization.
+  - Fetches organization data from Firestore based on the organization ID in the URL
+  - Shows organization info, ads, and members
+  - Allows organization owners to edit details or manage members
+  - Handles loading and error states
+  
+  This is used in App.js for the /organization/:id route and is accessible to all users.
+*/
+
 // import React, { useState, useEffect } from 'react';
 // import { useParams } from 'react-router-dom';
 // import { doc, getDoc } from 'firebase/firestore';

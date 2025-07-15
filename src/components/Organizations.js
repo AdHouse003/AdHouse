@@ -1,3 +1,15 @@
+/*
+  src/components/Organizations.js
+  -------------------------------
+  This component displays a list of all organizations.
+  - Fetches organizations from Firestore
+  - Shows organization cards with summary info
+  - Allows navigation to organization details
+  - Handles loading and error states
+  
+  This is used in App.js for the /organizations route and is accessible to all users.
+*/
+
 // import React, { useState, useEffect } from 'react';
 // import { collection, query, orderBy, getDocs } from 'firebase/firestore';
 // import { db } from '../firebase';

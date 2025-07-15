@@ -1,3 +1,15 @@
+/*
+  src/components/Profile.js
+  -------------------------
+  This component displays the public profile of a user (not necessarily the logged-in user).
+  - Fetches user data from Firestore based on the user ID in the URL
+  - Shows user info, ads, and organizations
+  - Allows messaging the user
+  - Handles loading and error states
+  
+  This is used in App.js for the /user/:id route and is accessible to all users.
+*/
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';

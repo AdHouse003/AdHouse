@@ -1,3 +1,12 @@
+/*
+  src/components/ImageGallery.js
+  -----------------------------
+  This component displays a gallery of images for an ad or organization.
+  - Shows thumbnails and allows users to view images in a larger format
+  - Handles image navigation and selection
+  - Used as a child component in ad and organization detail pages
+*/
+
 import React, { useState } from 'react';
 
 const ImageGallery = ({ images }) => {

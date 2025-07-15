@@ -181,7 +181,7 @@ const ListAd = () => {
             className="w-full p-2 border rounded"
             rows="4"
           />
-        </div>
+        </div> 
 
         <div>
           <label className="block mb-1">Price (GHC)</label>
